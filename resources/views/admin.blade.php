@@ -9,9 +9,9 @@
 </div>
 <div>
     <h2>Create new season</h2>
-    <form>
+    <form action="/season" method="POST">
         {{ csrf_field() }}
-        <input type="text" name="season" value="" maxlength="100" />
+        <input type="text" name="seasonName" maxlength="100" />
         <input type="submit" value="Submit" />
     </form>
 
@@ -31,16 +31,35 @@
             </tr>
             <tr>
                 <td>Season:</td>
-                <select name="season">
-                    <option selected>Chose season</option>
-                    @foreach($seasons as $season)
-                        <option val="{{ $season->id }}">{{ $season->name }}</option>
-                    @endforeach
-                </select>
+                <td>
+                    <select name="season">
+                        <option selected>Chose season</option>
+                        @foreach($seasons as $season)
+                            <option val="{{ $season->id }}">{{ $season->name }}</option>
+                        @endforeach
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Team:</td>
                 <td><input type="text" name="vsTeam" /></td>
+            </tr>
+            <tr>
+                <td>Win/Loss:</td>
+                <td>
+                    <select name="winLoss">
+                        <option val="W">W</option>
+                        <option val="L">L</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Goals for:</td>
+                <td><input type="number" name="goalsFor" /></td>
+            </tr>
+            <tr>
+                <td>Goals against:</td>
+                <td><input type="number" name="goalsAgainst" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Submit" /></td>
