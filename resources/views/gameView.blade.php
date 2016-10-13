@@ -8,9 +8,29 @@
 </head>
 <body>
 
-<h1>Game vs. teamname</h1>
+<h1>Game vs. {{ $game->vsTeam }}</h1>
 
-<iframe id="ytplayer" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/_I87Mf52xJI" frameborder="0"></iframe>
+<div>
+        <table border="0">
+            <tr>
+                <td>Game date:</td>
+                <td>{{ $game->date }}</td>
+            </tr>
+            <tr>
+                <td>Season:</td>
+                <td>{{ $game->season_id }}</td>
+            </tr>
+            <tr>
+                <td>Score:</td>
+                <td>{{ $game->winLoss }}  {{ $game->goalsFor }} - {{ $game->goalsAgainst }}</td>
+            </tr>
+        </table>
+</div>
+
+
+<iframe id="ytplayer" type="text/html" width="640" height="390" src="{{ $game->youtubeLink }}" frameborder="0"></iframe>
+
+<iframe id="ytplayer" type="text/html" width="640" height="390" src="https://www.youtube.com/watch?v=_I87Mf52xJI" frameborder="0"></iframe>
 
 </body>
 </html>

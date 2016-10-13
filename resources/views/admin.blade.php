@@ -18,7 +18,7 @@
 </div>
 <div>
     <h2>Add game</h2>
-    <form action="/addGame" method="POST">
+    <form action="/game" method="POST">
         {{ csrf_field() }}
         <table border="0">
             <tr>
@@ -32,10 +32,10 @@
             <tr>
                 <td>Season:</td>
                 <td>
-                    <select name="season">
+                    <select name="season_id">
                         <option selected>Chose season</option>
                         @foreach($seasons as $season)
-                            <option val="{{ $season->id }}">{{ $season->name }}</option>
+                            <option value="{{ $season->id }}">{{ $season->name }}</option>
                         @endforeach
                     </select>
                 </td>
@@ -48,8 +48,8 @@
                 <td>Win/Loss:</td>
                 <td>
                     <select name="winLoss">
-                        <option val="W">W</option>
-                        <option val="L">L</option>
+                        <option value="W">W</option>
+                        <option value="L">L</option>
                     </select>
                 </td>
             </tr>

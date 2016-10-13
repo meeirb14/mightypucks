@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Services\SeasonManager;
+use App\Services\GameManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
     private $seasonMngr;
+    private $gameMngr;
 
     public function __construct(){
-        $this->seasonMngr = new SeasonManager();
+        $this->seasonMngr   = new SeasonManager();
+        $this->gameMngr     = new GameManager();
     }
 
     public function show()
@@ -36,8 +39,7 @@ class AdminController extends Controller
 
     public function addGame(Request $request){
         if($request->isMethod('POST')){
-            $this->seasonMngr->addGame(
-                $request->input('youtubeLink'),
+            $this->gameMngr->addGame(
                 $request->input('youtubeLink'),
                 $request->input('date'),
                 $request->input('season_id'),

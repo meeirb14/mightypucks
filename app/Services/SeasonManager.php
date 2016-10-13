@@ -31,19 +31,4 @@ class SeasonManager
 
     }
 
-    public function addGame($youtubeLink, $date, $season_id, $vsTeam, $winLoss,
-                                $goalsFor, $goalsAgainst){
-
-        $game = new Game();
-        $game->youtubeLink = $youtubeLink;
-        $game->date = $date;
-        $game->season_id = $season_id;
-        $game->vsTeam = $vsTeam;
-        $game->winLoss = $winLoss;
-        $game->goalsFor = $goalsFor;
-        $game->goalsAgainst = $goalsAgainst;
-        $game->save();
-    }
-
-
 }
