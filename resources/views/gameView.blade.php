@@ -28,9 +28,9 @@
 </div>
 
 
-<iframe id="ytplayer" type="text/html" width="640" height="390" src="{{ $game->youtubeLink }}" frameborder="0"></iframe>
+<iframe id="ytplayer" type="text/html" width="640" height="390" src="{{ $game->youtubeLink }}" frameborder="0" allowfullscreen></iframe>
 
-<iframe id="ytplayer" type="text/html" width="640" height="390" src="https://www.youtube.com/watch?v=_I87Mf52xJI" frameborder="0"></iframe>
+
 
 </body>
 </html>

@@ -30,7 +30,7 @@ class GameManager
                                 $goalsFor, $goalsAgainst){
 
         $game = new Game();
-        $game->youtubeLink = $this->stripYoutubeLink($youtubeLink);
+        $game->youtubeLink = $this->fixToYoutubeLink($youtubeLink);
         $game->date = date( 'Y-m-d', strtotime($date) );
         $game->season_id = $season_id;
         $game->vsTeam = $vsTeam;
@@ -39,10 +39,16 @@ class GameManager
         $game->goalsAgainst = $goalsAgainst;
         $game->save();
     }
+/*
+ * <iframe width="640" height="360" src="https://www.youtube.com/embed/JM3ZId63tM0" frameborder="0" allowfullscreen></iframe>
+ */
+    private function fixToYoutubeLink($youtubeLink){
 
-    private function stripYoutubeLink($youtubeLink){
+        $array = preg_split('/=/', $youtubeLink);
 
-        return $youtubeLink;
+        $newLink = "https://www.youtube.com/embed/" . $array[1];
+
+        return $newLink;
     }
 
 
