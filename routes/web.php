@@ -10,12 +10,10 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Auth::routes();
+Route::get('/','HomeController@show')->name('home');
 Route::get('/admin', 'AdminController@show')->name('admin');
-Route::post('/game', 'AdminController@addGame')->name('addGame');
-Route::get('/game/{id}', 'GameController@show')->name('game');
-Route::post('/season', 'AdminController@addSeason')->name('addSeason');
+Route::post('/games', 'AdminController@addGame')->name('addGame');
+Route::get('/games/{id}', 'GameController@show')->name('game');
+Route::post('/seasons', 'AdminController@addSeason')->name('addSeason');
+

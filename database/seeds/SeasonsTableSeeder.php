@@ -12,7 +12,7 @@ class SeasonsTableSeeder extends Seeder
     public function run()
     {
         DB::table('seasons')->insert([
-            'name' => 'Summer 2016'
+            'name' => 'Fall 2016'
         ]);
     }
 }

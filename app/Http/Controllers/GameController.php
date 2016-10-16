@@ -13,6 +13,7 @@ class GameController extends Controller
     private $gameMngr;
 
     public function __construct(){
+        //$this->middleware('guest');
         $this->gameMngr = new GameManager();
     }
 

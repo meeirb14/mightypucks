@@ -14,6 +14,7 @@ class AdminController extends Controller
     private $gameMngr;
 
     public function __construct(){
+        $this->middleware('auth');
         $this->seasonMngr   = new SeasonManager();
         $this->gameMngr     = new GameManager();
     }
