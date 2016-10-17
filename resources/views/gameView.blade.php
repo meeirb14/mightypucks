@@ -36,8 +36,17 @@
                     <div class="col-md-4">
                         <ul class="list-group">
                             <li class="list-group-item"><strong>Game date: </strong>{{ $game->date }}</li>
-                            <li class="list-group-item"><strong>Season: </strong>{{ $game->season_id }}</li>
+                            <li class="list-group-item"><strong>Season: </strong>{{ $game->season->name }}</li>
                             <li class="list-group-item"><strong>Score: </strong>{{ $game->winLoss }}  {{ $game->goalsFor }} - {{ $game->goalsAgainst }}</li>
+                        </ul>
+                        <ul class="list-group">
+                            @foreach($game->goals as $goal)
+                                @if($goal->team == 'Mighty Pucks')
+                                <li class="list-group-item"><button id="goal-{{ $goal->id }}" type="button" class="btn btn-success">{{ $goal->team }}</button></li>
+                                @else
+                                <li class="list-group-item"><button id="goal-{{ $goal->id }}" type="button" class="btn btn-danger">{{ $goal->team }}</button></li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-8">
@@ -55,6 +64,7 @@
 
 @endsection
 
+@section('js')
 <script>
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -98,4 +108,27 @@
     function stopVideo() {
         player.stopVideo();
     }
+
+    /*
+        control youtube videos tutorial
+        http://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript/
+    */
+    $(document).ready(function() {
+        @foreach($game->goals as $goal)
+        $('#goal-{{ $goal->id }}').on('click', function () {
+            var time = getSecondsFromGameTime("{{ $goal->time }}");
+            player.seekTo(time);
+        });
+        @endforeach
+    });
+
+    function getSecondsFromGameTime(time){
+        array = time.split(':');
+        min = parseInt(array[0]);
+        sec= parseInt(array[1]);
+
+        return min * 60 + sec;
+    }
+
 </script>
+@endsection

@@ -12,8 +12,23 @@ class Game extends Model
 
     public function getVideoId(){
 
-        $array = preg_split('/embed\//', $this->youtubeLink);
+        $array = preg_split('/v=/', $this->youtubeLink);
 
         return $array[1];
     }
+
+    /**
+     * Get the season that owns the comment.
+     */
+    public function season()
+    {
+        return $this->belongsTo('App\Models\Season');
+    }
+
+    public function goals()
+    {
+        return $this->hasMany('App\Models\Goal');
+    }
+
+
 }

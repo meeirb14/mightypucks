@@ -19,7 +19,9 @@
         "classmap": [
 	    "database/seeds/DatabaseSeeder.php",
             "database/seeds/UsersTableSeeder.php",
-	    "database/seeds/SeasonsTableSeeder.php"
+	    "database/seeds/SeasonsTableSeeder.php",
+	    "database/seeds/GamesTableSeeder.php",
+	    "database/seeds/GoalsTableSeeder.php"
 
         ],
         "psr-4": {

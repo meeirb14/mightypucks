@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use UsersTableSeeder;
-use SeasonsTableSeeder;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(SeasonsTableSeeder::class);
+        $this->call(GamesTableSeeder::class);
+        $this->call(GoalsTableSeeder::class);
     }
 }

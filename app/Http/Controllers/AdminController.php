@@ -7,6 +7,7 @@ use App\Services\SeasonManager;
 use App\Services\GameManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -23,7 +24,8 @@ class AdminController extends Controller
     {
         $seasons = $this->seasonMngr->getSeasons();
         $data = array(
-            'seasons' => $seasons
+            'seasons' => $seasons,
+            'user'    => Auth::user()
         );
 
         return view('admin', $data);

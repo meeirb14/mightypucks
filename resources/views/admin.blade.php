@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <h1>Welcome, </h1>
+    <h1>Welcome, {{ $user->firstName }}</h1>
 </div>
 <div class="container">
     <div class="row">

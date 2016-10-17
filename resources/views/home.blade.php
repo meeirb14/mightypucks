@@ -22,7 +22,7 @@
                                 <tbody>
                                 @foreach($games as $game)
                                 <tr>
-                                    <td>{{ $game->season_id }}</td>
+                                    <td>{{ $game->season->name }}</td>
                                     <td>{{ $game->vsTeam }}</td>
                                     <td>{{ $game->date }}</td>
                                     <td>{{ $game->goalsFor }} - {{ $game->goalsAgainst }} ({{ $game->winLoss }})</td>
