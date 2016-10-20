@@ -28,7 +28,7 @@
                                 <table border="0">
                                     <tr>
                                         <td>Youtube link:</td>
-                                        <td><input type="text" name="youtubeLink" /></td>
+                                        <td><input id="youtubeLink" type="text" name="youtubeLink" /></td>
                                     </tr>
                                     <tr>
                                         <td>Game date:</td>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>Season:</td>
                                         <td>
-                                            <select name="season_id">
+                                            <select id="season_id" name="season_id">
                                                 <option selected>Chose season</option>
                                                 @foreach($seasons as $season)
                                                     <option value="{{ $season->id }}">{{ $season->name }}</option>
@@ -52,7 +52,7 @@
                                     <tr>
                                         <td>Win/Loss:</td>
                                         <td>
-                                            <select name="winLoss">
+                                            <select id="winLoss" name="winLoss">
                                                 <option value="W">W</option>
                                                 <option value="L">L</option>
                                                 <option value="T">T</option>
@@ -71,26 +71,16 @@
                             </div>
                             <div class="col-md-3 col-xs-6">
                                 <h4 id="teamHeader">Mighty Pucks</h4>
-                                <ul id="teamList"  class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control">
-                                        </div><!-- /input-group -->
-                                    </li>
-                                </ul>
+                                <div id="teamGoalTimes">
+                                </div>
                             </div>
                             <div class="col-md-3 col-xs-6">
                                 <h4 id="vsTeamHeader">vs Team</h4>
-                                <ul id="vsTeamList" class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control">
-                                        </div><!-- /input-group -->
-                                    </li>
-                                </ul>
+                                <div id="vsTeamGoalTimes">
+                                </div>
                             </div>
                         </div>
-                        <div class="panel-footer"><input class="btn btn-info" type="submit" value="Submit" /></div>
+                        <div class="panel-footer"><input id="gameSubmitBtn" class="btn btn-info" value="Submit" /></div>
                     </div>
                 </div>
             </div>
@@ -151,7 +141,7 @@
     <script>
         $(document).ready(function(){
 
-            var pucksGoals = 0;
+            var teamGoals = 0;
             var vsTeamGoals = 0;
             var vsTeamName = "";
 
@@ -163,18 +153,14 @@
             $("#goalsFor").change(function(){
                 if(this.value >= 0 && this.value <= 99){
                     items = "";
-                    pucksGoals = parseInt(this.value); //get goals value
+                    teamGoals = parseInt(this.value); //get goals value
                     $("#teamHeader").empty();
-                    $("#teamHeader").append("Mighty Pucks <span class='badge'>"+ pucksGoals +'</span>'); //add badge to table header team name
-                    for(i = 0; i < pucksGoals; i++){ //create string for adding dynamic amount of inputs for goal times
-                        items += '<li class="list-group-item">' +
-                                    '<div class="input-group">' +
-                                    '<input type="text" class="form-control">' +
-                                    '</div>' +
-                                    '</li>';
+                    $("#teamHeader").append("Mighty Pucks <span class='badge'>"+ teamGoals +'</span>'); //add badge to table header team name
+                    for(i = 0; i < teamGoals; i++){ //create string for adding dynamic amount of inputs for goal times
+                        items += '<input id="teamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="Goal time"/>';
                     }
-                    $("#teamList").empty();
-                    $("#teamList").append(items);
+                    $("#teamGoalTimes").empty();
+                    $("#teamGoalTimes").append(items);
                 }
 
             });
@@ -185,16 +171,12 @@
                     items = "";
                     $("#vsTeamHeader").empty();
                     $("#vsTeamHeader").append(vsTeamName + " <span class='badge'>"+ vsTeamGoals +'</span>'); //add badge to table header team name
-                    for(i = 0; i < pucksGoals; i++){ //create string for adding dynamic amount of inputs for goal times
-                        items += '<li class="list-group-item">' +
-                                '<div class="input-group">' +
-                                '<input type="text" class="form-control">' +
-                                '</div>' +
-                                '</li>';
+                    for(i = 0; i < vsTeamGoals; i++){ //create string for adding dynamic amount of inputs for goal times
+                        items += '<input id="vsTeamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="Goal time"/>';
                     }
                     console.log("test");
-                    $("#vsTeamList").empty();
-                    $("#vsTeamList").append(items);
+                    $("#vsTeamGoalTimes").empty();
+                    $("#vsTeamGoalTimes").append(items);
                 }
 
             });
@@ -203,6 +185,52 @@
                 vsTeamName = this.value;
                 $("#vsTeamHeader").html(vsTeamName + " ");
             });
+
+            $("#gameSubmitBtn").click(function(event){
+
+                var game;
+                var teamGoalTimes = [];
+                var vsTeamGoalTimes = [];
+
+                //get all the times entered for each goal
+                for(i = 0; i < teamGoals; i++) { //create string for adding dynamic amount of inputs for goal times
+                    teamGoalTimes.push($("#teamGoalTime-" + i).val());
+                }
+
+                for(i = 0; i < vsTeamGoals; i++) { //create string for adding dynamic amount of inputs for goal times
+                    vsTeamGoalTimes.push($("#vsTeamGoalTime-" + i).val());
+                }
+
+
+                game = {
+                    youtubeLink: $("#youtubeLink").val(),
+                    date: $("#date").val(),
+                    season_id: $("#season_id").find(":selected").val(),
+                    vsTeam: $("#vsTeam").val(),
+                    winLoss: $("#winLoss").find(":selected").val(),
+                    goalsFor: $("#goalsFor").val(),
+                    goalsAgainst: $("#goalsAgainst").val(),
+                    teamGoalTimes: teamGoalTimes,
+                    vsTeamGoalTimes: vsTeamGoalTimes
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/games",
+                    data: {
+                        game:  game
+                    },
+                    dataType: "json",
+                    success:function(data) {
+                       // alert("New game added");
+                    }
+                });
+
+
+                console.log(game);
+
+            });
+
 
 
 

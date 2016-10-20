@@ -42,15 +42,11 @@ class AdminController extends Controller
 
     public function addGame(Request $request){
         if($request->isMethod('POST')){
-            $this->gameMngr->addGame(
-                $request->input('youtubeLink'),
-                $request->input('date'),
-                $request->input('season_id'),
-                $request->input('vsTeam'),
-                $request->input('winLoss'),
-                $request->input('goalsFor'),
-                $request->input('goalsAgainst')
-            );
+
+            //dd($request->all());
+
+            $this->gameMngr->addGame($request);
+
         }
 
         return redirect('/admin');
