@@ -14,7 +14,7 @@ class GamesTableSeeder extends Seeder
         //
         DB::table('games')->insert([
             'youtubeLink'   => 'https://www.youtube.com/watch?v=_I87Mf52xJI',
-            'date'          => '8/10/2016',
+            'date'          => '2016-10-08',
             'vsTeam'        => 'Ruthless',
             'winLoss'       => 'L',
             'goalsFor'      => '3',
