@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'lastName'  => 'Bensabat',
             'email'     => 'meirb14@gmail.com',
             'password'  => '$2y$10$/78H6J4j3El87erTmUk1ou4PW9I6zhyeuSxWwMhkktnNGT8Ap7AD6',
-            'role'      => 'admin'
+            'role'      => 'Sysadmin'
         ]);
     }
 }

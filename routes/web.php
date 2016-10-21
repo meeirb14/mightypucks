@@ -16,4 +16,5 @@ Route::get('/admin', 'AdminController@show')->name('admin');
 Route::post('/games', 'AdminController@addGame')->name('addGame');
 Route::get('/games/{id}', 'GameController@show')->name('game');
 Route::post('/seasons', 'AdminController@addSeason')->name('addSeason');
+Route::post('/users', 'AdminController@addUser')->name('addUser');
 

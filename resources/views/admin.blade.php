@@ -80,17 +80,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer"><input id="gameSubmitBtn" class="btn btn-info" value="Submit" /></div>
+                        <div class="panel-footer"><input id="gameSubmitBtn" type="button" class="btn btn-info" value="Submit" /></div>
                     </div>
                 </div>
             </div>
+            @if(Auth::user()->role === 'Sysadmin')
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Add a user</div>
-                        <div class="panel-body">
-                            <div class="col-md-6">
-                                <form action="/users" method="POST">
+                        <form action="/users" method="POST">
+                            <div class="panel-heading">Add a user</div>
+                            <div class="panel-body">
+                                <div class="col-md-6">
                                     {{ csrf_field() }}
                                     <table border="0">
                                         <tr>
@@ -124,14 +125,14 @@
                                             <td><input type="password" name="sysadminPassword" /></td>
                                         </tr>
                                     </table>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel-footer"><input class="btn btn-danger" type="submit" value="Submit" /></div>
+                            <div class="panel-footer"><input class="btn btn-danger" type="submit" value="Submit" /></div>
+                        </form>
                     </div>
                 </div>
-
             </div>
+            @endif
         </div>
     </div>
 </div>
