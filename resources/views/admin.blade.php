@@ -31,6 +31,10 @@
                                         <td><input id="youtubeLink" type="text" name="youtubeLink" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Link format:</td>
+                                        <td>https://www.youtube.com/watch?v=-8AOvcjMwSg</td>
+                                    </tr>
+                                    <tr>
                                         <td>Game date:</td>
                                         <td><input id="date" type="text" name="date" /></td>
                                     </tr>
