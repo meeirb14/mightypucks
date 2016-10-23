@@ -36,7 +36,7 @@ class GameManager
         //dd($gameObject);
         
         $game = new Game();
-        $game->youtubeLink = $this->fixToYoutubeLink($gameObject->game->youtubeLink);
+        $game->youtubeLink = $gameObject->game->youtubeLink;
         $game->date = date( 'Y-m-d', strtotime($gameObject->game->date) );
         $game->season_id = $gameObject->game->season_id;
         $game->vsTeam = $gameObject->game->vsTeam;
