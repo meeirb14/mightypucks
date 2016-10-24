@@ -24,6 +24,7 @@ class GameManager
     public function getGameById($id){
 
         $game = Game::find($id);
+        //dd($game);
         return $game;
     }
 

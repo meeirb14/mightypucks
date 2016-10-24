@@ -40,6 +40,7 @@
                             <li class="list-group-item"><strong>Score: </strong>{{ $game->winLoss }}  {{ $game->goalsFor }} - {{ $game->goalsAgainst }}</li>
                         </ul>
                         <ul class="list-group">
+                            <li class="list-group-item">Click on a button to skip to the goal</li>
                             @foreach($game->goals as $goal)
                                 @if($goal->team == 'Mighty Pucks')
                                 <li class="list-group-item"><button id="goal-{{ $goal->id }}" type="button" class="btn btn-success">{{ $goal->team }}</button></li>
@@ -49,7 +50,8 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-xs-12">
+                        <div></div>
                         <div class="vid">
                             <div id="player"></div>
                         </div>
@@ -117,6 +119,7 @@
         @foreach($game->goals as $goal)
         $('#goal-{{ $goal->id }}').on('click', function () {
             var time = getSecondsFromGameTime("{{ $goal->time }}");
+            console.log(time);
             player.seekTo(time);
         });
         @endforeach
@@ -124,10 +127,11 @@
 
     function getSecondsFromGameTime(time){
         array = time.split(':');
-        min = parseInt(array[0]);
-        sec= parseInt(array[1]);
+        hour = parseInt(array[0]);
+        min = parseInt(array[1]);
+        sec= parseInt(array[2]);
 
-        return min * 60 + sec;
+        return hour * 60 + min * 60 + sec;
     }
 
 </script>

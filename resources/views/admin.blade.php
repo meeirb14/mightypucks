@@ -32,7 +32,7 @@
                                     </tr>
                                     <tr>
                                         <td>Link format:</td>
-                                        <td>https://www.youtube.com/watch?v=-8AOvcjMwSg</td>
+                                        <td>https://www.youtube.com/watch?v=video_id</td>
                                     </tr>
                                     <tr>
                                         <td>Game date:</td>

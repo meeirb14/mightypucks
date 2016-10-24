@@ -27,7 +27,7 @@ class Game extends Model
 
     public function goals()
     {
-        return $this->hasMany('App\Models\Goal');
+        return $this->hasMany('App\Models\Goal')->orderBy('time');
     }
 
 
