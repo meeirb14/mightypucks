@@ -162,7 +162,7 @@
                     $("#teamHeader").empty();
                     $("#teamHeader").append("Mighty Pucks <span class='badge'>"+ teamGoals +'</span>'); //add badge to table header team name
                     for(i = 0; i < teamGoals; i++){ //create string for adding dynamic amount of inputs for goal times
-                        items += '<input id="teamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="Goal time"/>';
+                        items += '<input id="teamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="00:00:00"/>';
                     }
                     $("#teamGoalTimes").empty();
                     $("#teamGoalTimes").append(items);
@@ -177,7 +177,7 @@
                     $("#vsTeamHeader").empty();
                     $("#vsTeamHeader").append(vsTeamName + " <span class='badge'>"+ vsTeamGoals +'</span>'); //add badge to table header team name
                     for(i = 0; i < vsTeamGoals; i++){ //create string for adding dynamic amount of inputs for goal times
-                        items += '<input id="vsTeamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="Goal time"/>';
+                        items += '<input id="vsTeamGoalTime-' + i + '" name="vsTeamGoalTime-' + i + '" type="text" class="form-control" placeholder="00:00:00"/>';
                     }
                     console.log("test");
                     $("#vsTeamGoalTimes").empty();

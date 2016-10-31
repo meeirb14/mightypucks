@@ -119,7 +119,8 @@
         @foreach($game->goals as $goal)
         $('#goal-{{ $goal->id }}').on('click', function () {
             var time = getSecondsFromGameTime("{{ $goal->time }}");
-            console.log(time);
+            console.log("time got from server: " + "{{ $goal->time }}");
+            console.log("time returned: " + time);
             player.seekTo(time);
         });
         @endforeach
@@ -127,9 +128,16 @@
 
     function getSecondsFromGameTime(time){
         array = time.split(':');
+
+        console.log(array);
+
         hour = parseInt(array[0]);
         min = parseInt(array[1]);
         sec= parseInt(array[2]);
+
+        console.log("hour: " + hour);
+        console.log("min: " + min);
+        console.log("sec: " + sec);
 
         return hour * 60 + min * 60 + sec;
     }
