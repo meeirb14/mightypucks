@@ -34,7 +34,7 @@ class GameManager
         $gameObject = json_decode(json_encode($request->all()), FALSE);
         //$json = json_encode($request->all());
 
-        //dd($gameObject);
+
         
         $game = new Game();
         $game->youtubeLink = $gameObject->game->youtubeLink;
@@ -47,26 +47,37 @@ class GameManager
 
         $game->save();
 
-        $teamGoalTimes = $gameObject->game->teamGoalTimes;
-        $vsTeamGoalTimes = $gameObject->game->vsTeamGoalTimes;
-
-        foreach($teamGoalTimes as $goalTime){
-
-            $goal = new Goal();
-            $goal->team = "Mighty Pucks";
-            $goal->time = $goalTime;
-
-            $game->goals()->save($goal);
+        if(isset($gameObject->game->teamGoalTimes)) {
+            $teamGoalTimes = $gameObject->game->teamGoalTimes;
+        }
+        if(isset($gameObject->game->vsTeamGoalTimes)) {
+            $vsTeamGoalTimes = $gameObject->game->vsTeamGoalTimes;
         }
 
-        foreach($vsTeamGoalTimes as $vsGoalTime){
 
-            $goal = new Goal();
-            $goal->team = $game->vsTeam;
-            $goal->time = $vsGoalTime;
 
-            $game->goals()->save($goal);
+        if(isset($teamGoalTimes)){
+            foreach($teamGoalTimes as $goalTime){
+
+                $goal = new Goal();
+                $goal->team = "Mighty Pucks";
+                $goal->time = $goalTime;
+
+                $game->goals()->save($goal);
+            }
         }
+
+        if(isset($vsTeamGoalTimes)){
+            foreach($vsTeamGoalTimes as $vsGoalTime){
+
+                $goal = new Goal();
+                $goal->team = $game->vsTeam;
+                $goal->time = $vsGoalTime;
+
+                $game->goals()->save($goal);
+            }
+        }
+
 
     }
 /*
